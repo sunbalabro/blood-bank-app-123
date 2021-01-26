@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import Ima from "./background.png"
+import Ima from "../background.png"
 
 
 export default function Login() {
@@ -17,7 +17,7 @@ export default function Login() {
    console.log(password)
   return (
     <View>
-<ImageBackground source={Ima} style={{width:1170,height:750}} >
+<ImageBackground source={Ima} style={{width:1130,height:720}} >
     
      <View style={styles.card}>
      <Text style={styles.heading}>Login</Text>
@@ -40,10 +40,13 @@ export default function Login() {
       <TouchableOpacity>
         <Text style={{marginTop:20}}>Forget Password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+    
+      <TouchableOpacity onPress={()=>{window.location.href="./register.js"}}>
         <Text style={{marginTop:10}}>Create Account</Text>
       </TouchableOpacity>
-     </View>
+
+    
+           </View>
     </ImageBackground>
     </View>
   )

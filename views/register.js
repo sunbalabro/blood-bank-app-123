@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import Ima from "./background.png"
+import Ima from "../background.png"
 
 
 export default function Register() {
@@ -20,7 +20,7 @@ export default function Register() {
 <ImageBackground source={Ima} style={{width:1170,height:750}} >
     
      <View style={styles.card}>
-     <Text style={styles.heading}>Login</Text>
+     <Text style={styles.heading}>Register</Text>
        <TextInput
         style={{height: 40,borderBottomWidth:1,width:250,borderBottomColor:"red"}}
         placeholder="Email address"
