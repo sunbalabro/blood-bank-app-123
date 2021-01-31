@@ -8,13 +8,36 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Ima from "../background.png"
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
-
-export default function Login() {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
    console.log(email)
    console.log(password)
+const  LoginUser =()=>{
+  console.log(password)
+  console.log(email)
+  
+auth()
+  .signInWithEmailAndPassword(email, password)
+  .then(() => {
+    console.log('User account created & signed in!');
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
+}  
+
   return (
     <View>
 <ImageBackground source={Ima} style={{width:1130,height:720}} >
@@ -34,14 +57,15 @@ export default function Login() {
         onChangeText={text => setPassword  (text)}
         value={password}
       />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity  onPress={LoginUser} style={styles.button}>
         <Text style={{fontWeight:"bold",color:"white",marginTop:10}}>Log In</Text>
       </TouchableOpacity>
+      
       <TouchableOpacity>
         <Text style={{marginTop:20}}>Forget Password?</Text>
       </TouchableOpacity>
     
-      <TouchableOpacity onPress={()=>{window.location.href="./register.js"}}>
+      <TouchableOpacity onPress={()=> navigation.navigate("Register")}>
         <Text style={{marginTop:10}}>Create Account</Text>
       </TouchableOpacity>
 

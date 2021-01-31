@@ -5,19 +5,60 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
+  Picker
 } from 'react-native';
-import Ima from "../background.png"
-
+import Ima2 from "../backreg.jpg"
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-   console.log(email)
+  const [firstName, setfirstName] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [phoneNumber, setphoneNumber] = useState('');
+  const [selectedValue, setSelectedValue] = useState("AB+");
+  console.log(email)
    console.log(password)
-  return (
-    <View>
-<ImageBackground source={Ima} style={{width:1170,height:750}} >
+const RegisterUser=()=>{
+  console.log(password)
+  console.log(email)
+  console.log(lastName)
+  console.log(firstName)
+  console.log(phoneNumber)
+  console.log(selectedValue)
+  database().ref("/user/").set({
+    email:email,
+    password:password,
+    firstName:firstName,
+    lastName:lastName,
+    phoneNumber:phoneNumber,
+    selectedValue:selectedValue
+
+  });
+  auth()
+  .createUserWithEmailAndPassword(email, password)
+  .then(() => {
+    console.log('User account created & signed in!');
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
+}
+   return (
+   <ScrollView>
+<View>
+<ImageBackground source={Ima2} style={{width:360,height:750,resizeMode:"cover"}} >
     
      <View style={styles.card}>
      <Text style={styles.heading}>Register</Text>
@@ -34,25 +75,60 @@ export default function Register() {
         onChangeText={text => setPassword  (text)}
         value={password}
       />
-        <TouchableOpacity style={styles.button}>
-        <Text style={{fontWeight:"bold",color:"white",marginTop:10}}>Log In</Text>
+            <TextInput
+        style={{height: 40,borderBottomWidth:1,width:250,marginTop:20,borderBottomColor:"red"}}
+        placeholder="First name"
+        onChangeText={text => setfirstName  (text)}
+        value={firstName}
+      />
+            <TextInput
+        style={{height: 40,borderBottomWidth:1,width:250,marginTop:20,borderBottomColor:"red"}}
+        placeholder="Last name"
+        onChangeText={text => setlastName  (text)}
+        value={lastName}
+      />
+            <TextInput
+        style={{height: 40,borderBottomWidth:1,width:250,marginTop:20,borderBottomColor:"red"}}
+        placeholder="Phone number"
+        onChangeText={text => setphoneNumber  (text)}
+        value={phoneNumber}
+      />
+        <Text style={{width:250,marginTop:10}}>Blood Group</Text>
+       <View style={{width:250}}>
+       <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 100 }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+        <Picker.Item label="AB+" value="AB+" style={{width:20}} />
+        <Picker.Item label="AB-" value="AB-" style={{width:20}} />
+        <Picker.Item label="B+" value="B+" style={{width:20}} />
+        <Picker.Item label="B-" value="B-" style={{width:20}} />
+        <Picker.Item label="O+" value="O+" style={{width:20}} />
+        <Picker.Item label="O-" value="O-" style={{width:20}} />
+        <Picker.Item label="A+" value="A+" style={{width:20}} />
+        <Picker.Item label="A-" value="A-" style={{width:20}} />
+              
+      </Picker>
+       </View>
+       
+        <TouchableOpacity onPress={RegisterUser} style={styles.button}>
+        <Text style={{fontWeight:"bold",color:"white",marginTop:10}}>Register</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={{marginTop:20}}>Forget Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={{marginTop:10}}>Create Account</Text>
-      </TouchableOpacity>
+      
+      
      </View>
     </ImageBackground>
     </View>
-  )
+ 
+   </ScrollView>
+    )
 }
 
 const styles = StyleSheet.create({
   heading:{
     fontSize:20,
-  color:"red",
+    color:"red",
     fontWeight:"bold",
     marginTop:30
   },

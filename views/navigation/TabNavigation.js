@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={StackNavigation} />
+      <Tab.Screen name="All Donors" component={StackNavigation} />
       <Tab.Screen name="Contact" component={ContactStackNavigator} />
     </Tab.Navigator>
   );
