@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, Button, Image, StyleSheet } from "react-native"
+import {View, Text, Button, Image, StyleSheet, ScrollView } from "react-native"
 import auth from '@react-native-firebase/auth';
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
@@ -37,8 +37,19 @@ export default function AllDonors() {
             userName:'Sabir',
             city:'karachi'
         },
+        {
+            bloodGroup:"B+",
+            userName:'Sabir',
+            city:'karachi'
+        },
+        {
+            bloodGroup:"B+",
+            userName:'Sabir',
+            city:'karachi'
+        },
     ]
     return (
+        <ScrollView>
         <View>
                     <Button 
             title="signout"
@@ -48,7 +59,7 @@ export default function AllDonors() {
              
                  <View style={styles.list}>
                 <Image source={require('../user.jpg')} style={{width:60,marginRight:5,marginLeft:5,height:70,resizeMode:"contain"}}/>
-                  <View>
+                  <View style={{width:185}}>
                   <Text style={{fontSize:15,fontWeight:"bold"}}>{userName}</Text>
                   <Text style={{fontSize:15,fontWeight:"bold"}}>{city}</Text>
                   <Text style={{fontSize:15,fontWeight:"bold"}}>{bloodGroup}</Text>
@@ -63,6 +74,7 @@ export default function AllDonors() {
             
             </View>
        
+            </ScrollView>  
     )
 }
 const styles = StyleSheet.create({
@@ -71,6 +83,7 @@ const styles = StyleSheet.create({
         borderColor:"black",
         marginTop:10,
         display:"flex",
-        flexDirection:'row'
+        flexDirection:'row',
+        backgroundColor:"white"
     }
 })

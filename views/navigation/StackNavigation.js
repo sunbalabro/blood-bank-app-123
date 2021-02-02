@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../Home";
 import About from "../About";
-import Contact from "../Contact"
+import Request from "../Request"
 import AllDonors from "../AllDonors"
 const Stack = createStackNavigator();
 const screenOptionStyle = {
@@ -26,7 +26,7 @@ const StackNavigation = () => {
 const ContactStackNavigator = () => {
     return (
       <Stack.Navigator screenOptions={screenOptionStyle}>
-        <Stack.Screen name="Contact" component={Contact} />
+        <Stack.Screen name="Requests" component={Request} />
       </Stack.Navigator>
     );
   };

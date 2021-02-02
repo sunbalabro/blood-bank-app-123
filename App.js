@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 import {
   StyleSheet,
 } from 'react-native';
@@ -8,9 +8,12 @@ import MainNavigation from "./views/navigation/MainNavigation"
 import Register from "./views/register"
 import MultipleSelect from "./views/MultipleSelect"
 import AllDonors from "./views/AllDonors"
+import SplashScreen from "./views/SplashScreen"
+import database from '@react-native-firebase/database';
 export default function App() {
   
   return (
+    // <SplashScreen/>
     // <AllDonors/>
     // <MultipleSelect/>
   // <Register/>

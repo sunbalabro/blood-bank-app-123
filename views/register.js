@@ -29,7 +29,7 @@ const RegisterUser=()=>{
   console.log(firstName)
   console.log(phoneNumber)
   console.log(selectedValue)
-  database().ref("/user/").set({
+  database().ref("/user/"+userId).set({
     email:email,
     password:password,
     firstName:firstName,
