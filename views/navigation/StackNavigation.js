@@ -7,6 +7,8 @@ import Home from "../Home";
 import About from "../About";
 import Request from "../Request"
 import AllDonors from "../AllDonors"
+import CreateRequest from "../CreateRequest";
+import MyProfile from "../MyProfile";
 const Stack = createStackNavigator();
 const screenOptionStyle = {
     headerStyle: {
@@ -19,6 +21,8 @@ const StackNavigation = () => {
   return (
     <Stack.Navigator  screenOptions={screenOptionStyle}>
       <Stack.Screen name="All Donors" component={AllDonors} />
+      <Stack.Screen name="My Profile" component={MyProfile} />
+      <Stack.Screen name="Create Request" component={CreateRequest}/>
       <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );

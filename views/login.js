@@ -14,11 +14,9 @@ import auth from '@react-native-firebase/auth';
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-   console.log(email)
-   console.log(password)
-const  LoginUser =()=>{
-  console.log(password)
-  console.log(email)
+   
+  const  LoginUser =()=>{
+  
   
 auth()
   .signInWithEmailAndPassword(email, password)

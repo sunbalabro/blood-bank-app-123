@@ -20,16 +20,16 @@ export default function Register() {
   const [lastName, setlastName] = useState('');
   const [phoneNumber, setphoneNumber] = useState('');
   const [selectedValue, setSelectedValue] = useState("AB+");
-  console.log(email)
-   console.log(password)
-const RegisterUser=()=>{
-  console.log(password)
-  console.log(email)
-  console.log(lastName)
-  console.log(firstName)
-  console.log(phoneNumber)
-  console.log(selectedValue)
-  database().ref("/user/"+userId).set({
+  
+const RegisterUser=({ userId })=>{
+  
+  auth()
+  .createUserWithEmailAndPassword(email, password)
+  .then((result) => {
+    console.log('User account created & signed in!' , result);
+    const user = result
+
+  database().ref(`/user/${user.uid}`).set({
     email:email,
     password:password,
     firstName:firstName,
@@ -38,10 +38,6 @@ const RegisterUser=()=>{
     selectedValue:selectedValue
 
   });
-  auth()
-  .createUserWithEmailAndPassword(email, password)
-  .then(() => {
-    console.log('User account created & signed in!');
   })
   .catch(error => {
     if (error.code === 'auth/email-already-in-use') {

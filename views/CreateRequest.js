@@ -3,8 +3,9 @@ import {View,Text,Picker,TouchableOpacity,ImageBackground,
     ScrollView,TextInput,StyleSheet} from "react-native"
 import Ima2 from "../backreg.jpg"
 import database from '@react-native-firebase/database';
+import DrawerNavigation from './navigation/DrawerNavigation';
 
-export default function CreateRequest() {
+export default function CreateRequest({navigation}) {
 
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
@@ -13,13 +14,15 @@ export default function CreateRequest() {
   const [textArea, settextArea] = useState("")
   
   const createRequest = () => {
-    database().ref('/request/'+key).push({
+    database().ref('/request/').push({
       firstName:firstName,
       lastName:lastName,
       phoneNumber:phoneNumber,
       selectedValue:selectedValue,
       textArea:textArea,
-    })
+    }
+     
+    ).then(() => navigation.navigate('All Donors'));
   }
  
   return (
